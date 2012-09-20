@@ -125,33 +125,16 @@ flushDB :: Handle
         -> IO (Maybe RedisReply)
 flushDB h = request h ["FLUSHDB"]
 
-
 -- | FLUSHALL
 flushAll :: Handle
          -> IO (Maybe RedisReply)
 flushAll h = request h ["FLUSHALL"]
-
 
 -- | The PING command should return PONG
 ping :: Handle
      -> IO (Maybe RedisReply)
 ping h = request h ["PING"]
 
-
 -- | Placeholder for a better-designed function
-unwrapReply :: Maybe RedisReply -> [Text]
-unwrapReply reply =
-    case reply of
-      Just (RedisSingle _)    -> []
-      Just (RedisError _)     -> []
-      Just (RedisInteger _)   -> []
-      Just (RedisBulk _)      -> []
-      Just (RedisSingle x)    -> [x]
-      Just (RedisError x)     -> [x]
-      Just (RedisInteger x)   -> [T.pack $ show x]
-      Just (RedisBulk x)      -> catMaybes $ map bulks x
-      Nothing                 -> ["Nada"]
-  where
-    bulks rs = case rs of
-        Just (RedisBulk [Just (RedisSingle x)]) -> Just x
-        Nothing                                 -> Nothing
+unwrapReply :: Maybe RedisReply -> RedisReply
+unwrapReply = fromJust
