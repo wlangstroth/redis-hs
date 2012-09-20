@@ -8,17 +8,7 @@ A simple Redis driver in Haskell using Data.Text for consistent UTF8 handling.
 
 ## Use
 
-Make sure to include
-
-    Database.Redis
-
-and try the following:
-
-    con <- connect localhost defaultPort
-    _ <- select con 0
-    _ <- itemSet con "greek" "ἐστίν"
-    tester <- itemGet con "greek"
-    putStrLn $ show tester
+After installing, check out the `examples` directory, or look at the unit tests.
 
 ## Acknowledgements
 

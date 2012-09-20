@@ -19,13 +19,13 @@ module Database.Redis.General
     , flushAll
     , select
     , ping
-    , unwrapReply
+--    , unwrapReply
     ) where
 
 import           System.IO
 import qualified Data.Text as T
 import           Database.Redis.Internal
-import           Data.Maybe
+-- import           Data.Maybe
 
 -- | Calls @EXISTS@ (<http://code.google.com/p/redis/wiki/ExistsCommand>)
 -- | with a 'Text' argument
@@ -134,7 +134,3 @@ flushAll h = request h ["FLUSHALL"]
 ping :: Handle
      -> IO (Maybe RedisReply)
 ping h = request h ["PING"]
-
--- | Placeholder for a better-designed function
-unwrapReply :: Maybe RedisReply -> RedisReply
-unwrapReply = fromJust

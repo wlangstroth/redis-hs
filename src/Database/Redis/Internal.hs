@@ -3,11 +3,14 @@
 module Database.Redis.Internal
     ( RedisReply(..)
     , Text
+    , toInt
     , request
     , crlf
     , pairsToList
     ) where
 
+import           Data.List (intersperse)
+import           Data.Maybe
 import           Data.Text (Text)
 import qualified Data.Text as T
 import qualified Data.Text.IO as T
@@ -18,7 +21,14 @@ data RedisReply = RedisSingle Text
                 | RedisError Text
                 | RedisInteger Int
                 | RedisBulk [Maybe RedisReply]
-                  deriving (Eq, Show)
+                  deriving (Eq)
+
+instance Show RedisReply where
+  show (RedisSingle x) = T.unpack x
+  show (RedisInteger x) = show x
+  show (RedisError x) = "Error: " ++ (T.unpack x)
+  show (RedisBulk xs) = join xs
+      where join = concat . intersperse ", " . map (show . fromJust)
 
 -- | Sends the request
 send :: Handle
