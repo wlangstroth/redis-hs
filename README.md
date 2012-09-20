@@ -25,3 +25,6 @@ and try the following:
 Much  of  the  code  in  this  library is  inspired  by  the  work  of  Anders
 Conbere   and  Alexander   Bogdanov   (author  of   the   [redis  library   on
 Hackage](http://hackage.haskell.org/package/redis)).
+
+The test suite was created with the kind help of Greg Collins and Doug
+Beardsley (whose Snap Framework test suite format I followed).
