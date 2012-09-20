@@ -56,7 +56,7 @@ argLength arg = T.concat ["$", T.pack $ show $ T.length arg]
 -- <http://code.google.com/p/redis/wiki/ProtocolSpecification>
 processReply :: Handle -> IO (Maybe RedisReply)
 processReply h = do
-    reply <- fmap trim $ T.hGetLine h
+    reply <- fmap T.strip $ T.hGetLine h
     case T.uncons reply of
       Just ('+', rest) -> singleReply rest
       Just ('-', rest) -> errorReply rest
@@ -66,8 +66,6 @@ processReply h = do
       Just (_, _)      -> return $ Nothing
       Nothing          -> return $ Nothing
   where
-    trim = T.takeWhile (\c -> c /= ' ' && c /= '\n' && c /= '\r')
-
     singleReply t = return $ Just $ RedisSingle t
 
     errorReply t = return $ Just $ RedisError t
