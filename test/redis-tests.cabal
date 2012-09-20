@@ -1,0 +1,22 @@
+name:           redis-tests
+version:        0.2.0
+build-type:     Simple
+cabal-version:  >= 1.8
+
+Executable testsuite
+   hs-source-dirs:  ../src suite
+   main-is:         TestSuite.hs
+
+   build-depends:
+     QuickCheck >= 2,
+     base >= 4 && < 5,
+     bytestring,
+     network,
+     HUnit,
+     random,
+     test-framework,
+     test-framework-hunit,
+     test-framework-quickcheck2,
+     text
+
+   ghc-options: -Wall -fhpc
