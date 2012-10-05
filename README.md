@@ -1,6 +1,9 @@
 # redis-hs
 
 A simple Redis driver in Haskell using Data.Text for consistent UTF8 handling.
+Incomplete, and not for production use. To the best of my knowledge,
+[hedis](http://hackage.haskell.org/package/hedis) is the best supported of redis
+clients in Haskell.
 
 ## Install
 
