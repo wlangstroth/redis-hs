@@ -7,7 +7,7 @@ clients in Haskell.
 
 ## Install
 
-    cabal install redis-hs
+    cabal install
 
 ## Use
 
