@@ -8,7 +8,6 @@ dist/
 *.sw?
 #*#
 .#*
-.DS_Store
-**/.DS_Store
 docs/out
 *.log
+_darcs/
