@@ -30,6 +30,7 @@ instance Show RedisReply where
   show (RedisBulk xs) = join xs
       where join = concat . intersperse ", " . map (show . fromJust)
 
+
 -- | Sends the request
 send :: Handle
      -> Text    -- ^ the request

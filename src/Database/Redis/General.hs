@@ -27,6 +27,8 @@ import qualified Data.Text as T
 import           Database.Redis.Internal
 -- import           Data.Maybe
 
+
+
 -- | Calls @EXISTS@ (<http://code.google.com/p/redis/wiki/ExistsCommand>)
 -- | with a 'Text' argument
 keyExists :: Handle

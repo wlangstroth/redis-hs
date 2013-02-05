@@ -39,16 +39,16 @@ listLeftPush h key value = request h ["LPUSH", key, value]
 
 -- | Calls @LLEN@ with a 'Text' argument
 listLength :: Handle
-           -> Text  -- ^ key
+           -> Text    -- ^ key
            -> IO (Maybe RedisReply)
 listLength h key = request h ["LLEN", key]
 
 
 -- | Calls @LRANGE@ with a 'Text' argument
 listRange :: Handle
-          -> Text  -- ^ key
-          -> Int         -- ^ start
-          -> Int         -- ^ end
+          -> Text     -- ^ key
+          -> Int      -- ^ start
+          -> Int      -- ^ end
           -> IO (Maybe RedisReply)
 listRange h key start end =
     request h ["LRANGE", key, T.pack $ show start, T.pack $ show end]
